@@ -1,4 +1,4 @@
-<div class="container delante">
+<div class="container delante margen">
 	<div class="row">
 		<div class="col-sm-4">
 			<h1>LOGIN</h1>

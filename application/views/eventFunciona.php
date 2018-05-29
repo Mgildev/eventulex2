@@ -1,4 +1,4 @@
-<div class="container text-justify delante">
+<div class="container text-justify delante margen">
 <h4>¿Con cuánta antelación puedo comprar una entrada?</h4>
 
 <p>Las entradas se pueden comprar hasta 1 día antes del evento.</p>
