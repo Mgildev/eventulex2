@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container delante">
 	<div class="row">
 		<?php 
 		if(isset($query2)) 
