@@ -59,7 +59,7 @@ class eventulex extends CI_Controller
                 'alias' => $_POST['alias']
               ));
               $this->load->view('eventCabecera');
-              $this->load->view('eventUserPrivado'); // <----- Faltara crear la sesión
+              $this->load->view('eventUserPrivado');
               $this->load->view('eventPie');
             }
               else
@@ -179,6 +179,7 @@ class eventulex extends CI_Controller
     public function como_funcionamos()
     {
       $this->load->helper('url');
+      $this->load->library('session');
       $this->load->view('eventCabecera');
       $this->load->view('eventFunciona');
       $this->load->view('eventPie');
