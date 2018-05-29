@@ -13,12 +13,13 @@
 	src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
-	<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/master.css"> 
+	<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/event.css"> 
 	<script type = 'text/javascript' src = "<?php echo base_url(); ?>js/main.js"></script> 
 </head>
 
 <body>
-<div class="container text-center">
+<div id="caja"><img src="<?php echo base_url();?>img/fondos/fondo<?php echo(rand(1,4)); ?>.jpg"/></div>
+<div class="text-center texto">
 	<h1>EVENTULEX</h1>      
     <h3>Tus entradas sin esperas</h3>
 </div>
@@ -36,7 +37,7 @@
 					<a class="nav-link" href="<?php echo site_url();?>/eventulex/quienes_somos">Quienes somos</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="<?php echo site_url();?>/eventulex/como_funcionamos">¿Cómo funcionamos?</a>
+					<a class="nav-link" href="<?php echo site_url();?>/eventulex/como_funcionamos">FAQ</a>
 				</li>
 				<li class="nav-item">
 					<?php

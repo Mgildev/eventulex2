@@ -175,4 +175,12 @@ class eventulex extends CI_Controller
     {
 
     }
+
+    public function como_funcionamos()
+    {
+      $this->load->helper('url');
+      $this->load->view('eventCabecera');
+      $this->load->view('eventFunciona');
+      $this->load->view('eventPie');
+    }
 }
