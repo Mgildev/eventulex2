@@ -1,4 +1,4 @@
-<div class="col-sm-12 cssPie">
+<footer>
     Todos los derechos reservados - Contacto: <a href="mailto:mimail@example.com">mimail@example.com</a> - Aviso Legal
     <?php
     //	echo date("H:i:s  j-m-y");
@@ -60,6 +60,6 @@
     }
     window.onload=show5
     </script>
-</div> 
+</footer> 
 </body>
 </html>
