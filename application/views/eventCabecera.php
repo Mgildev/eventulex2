@@ -39,7 +39,13 @@
 					<a class="nav-link" href="<?php echo site_url();?>/eventulex/como_funcionamos">¿Cómo funcionamos?</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link login" href="<?php echo site_url();?>/eventulex/login">Login</a>
+					<?php
+						if($this->session->has_userdata('alias')){
+							echo "<a class='nav-link login' href='". site_url()."/eventulex/logout'>Logout</a>";
+						} else {
+							echo "<a class='nav-link login' href='". site_url()."/eventulex/login'>Login</a>";
+						}
+					?>
 				</li>
 			</ul>
 		</div>

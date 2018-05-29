@@ -7,7 +7,7 @@ class eventulex extends CI_Controller
 
     	$this->load->helper(array('form', 'url'));
     	$this->load->library('table');
-    	
+    	$this->load->library('session');
         $this->load->model('eventulex_model','',TRUE);
 		$data['query'] = $this->eventulex_model->muestraEventos();
 
@@ -20,9 +20,19 @@ class eventulex extends CI_Controller
     {
         $this->load->helper('url');
         $this->load->helper('form');
+        $this->load->library('session');
         $this->load->view('eventCabecera');
         $this->load->view('eventAcceso');
         $this->load->view('eventPie');
+    }
+
+    public function logout()
+    {
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->library('session');
+        $this->session->sess_destroy();
+        redirect('/eventulex', 'auto', 301);
     }
 
     public function usuarioValida()  //Validar usuario registrado
@@ -30,6 +40,7 @@ class eventulex extends CI_Controller
     	// helpers y libraries
     	$this->load->helper('url');
       $this->load->library('form_validation');
+      $this->load->library('session');
 
       // Validaciones
         $this->form_validation->set_rules('alias', 'Alias', 'required', array('required' => 'El Alias es obligatorio.'));
@@ -44,6 +55,9 @@ class eventulex extends CI_Controller
             $data['query'] = $this->eventulex_model->login();
             if (count($data['query'])!= 0)
             {
+              $this->session->set_userdata(array(
+                'alias' => $_POST['alias']
+              ));
               $this->load->view('eventCabecera');
               $this->load->view('eventUserPrivado'); // <----- Faltara crear la sesión
               $this->load->view('eventPie');
@@ -77,6 +91,7 @@ class eventulex extends CI_Controller
     {
       $this->load->helper('url');
       $this->load->library('form_validation');
+      $this->load->library('session');
 
       // Validaciones
         $this->form_validation->set_rules('usuario', 'Usuario', 'required', array('required' => 'El nombre de Usuario es obligatorio.'));
@@ -136,6 +151,7 @@ class eventulex extends CI_Controller
     {
       $this->load->helper(array('form', 'url'));
       $this->load->library('table');
+      $this->load->library('session');
       $this->load->model('eventulex_model','',TRUE);
       $data['query'] = $this->eventulex_model->fichaEvento($evento);
       $data2['query2'] = $this->eventulex_model->fichaEntradas($evento);
@@ -149,6 +165,7 @@ class eventulex extends CI_Controller
     public function quienes_somos()
     {
       $this->load->helper('url');
+      $this->load->library('session');
       $this->load->view('eventCabecera');
       $this->load->view('eventSomos');
       $this->load->view('eventPie');
