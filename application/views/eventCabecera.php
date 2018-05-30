@@ -39,15 +39,14 @@
 				<li class="nav-item">
 					<a class="nav-link" href="<?php echo site_url();?>/eventulex/como_funcionamos">FAQ</a>
 				</li>
-				<li class="nav-item">
 					<?php
 						if($this->session->has_userdata('alias')){
-							echo "<a class='nav-link login' href='". site_url()."/eventulex/logout'>Logout</a>";
+							echo "<li class='nav-item'><a class='nav-link login' href='". site_url()."/eventulex/perfil'>Perfil</a></li>";
+							echo "<li class='nav-item'><a class='nav-link login' href='". site_url()."/eventulex/logout'>Logout</a></li>";
 						} else {
-							echo "<a class='nav-link login' href='". site_url()."/eventulex/login'>Login</a>";
+							echo "<li class='nav-item'><a class='nav-link login' href='". site_url()."/eventulex/login'>Login</a></li>";
 						}
 					?>
-				</li>
 			</ul>
 		</div>
 	</nav>

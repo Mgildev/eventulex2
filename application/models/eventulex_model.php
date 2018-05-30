@@ -94,14 +94,49 @@ class eventulex_model extends CI_Model
         return TRUE;       
     }
 
-    public function precioBajoEntrada($evento)
+    public function precioBajoEntrada($evento) // 
     {
-    	//SELECT e.precio FROM entrada e WHERE e.id_evento=1 order by e.precio asc limit 1
-    	$this->db->select('e.precio');
+    	//SELECT min(e.precio) FROM entrada e WHERE e.id_evento=1
+    	$this->db->select('MIN(e.precio) AS precio');
 		$this->db->from('entrada e');
 		$this->db->where('e.id_evento=' . $evento);
-		$this->db->order_by('e.precio ASC');
-		$this->db->limit(1);
+		return $this->db->get()->result();
+    }
+
+    public function proximasEntradas($user) // Devuelve las entradas compradas de los proximos eventos
+    {
+    	/*SELECT e.fecha_ini, ev.nombre, e.descripcion, t.id
+		FROM ticket t, entrada e, evento ev, usuario u 
+		WHERE t.id_evento=ev.id
+		AND t.id_usuario=u.id
+		AND t.id_entrada=e.id
+		AND t.comprada=1
+		AND u.alias="Joselito"
+		AND e.fecha_ini>CURRENT_DATE
+		ORDER BY e.fecha_ini*/
+
+		$this->db->select('e.fecha_ini, ev.nombre, e.descripcion, t.id');
+		$this->db->from('ticket t, entrada e, evento ev, usuario u');
+		$this->db->where('t.id_evento=ev.id');
+		$this->db->where('t.id_usuario=u.id');
+		$this->db->where('t.id_entrada=e.id');
+		$this->db->where('t.comprada=1');
+		$this->db->where('u.alias="' . $user . '"');
+		$this->db->where('e.fecha_ini > ' . date(time()));
+		$this->db->order_by("e.fecha_ini ASC");
+		return $this->db->get()->result();
+    }
+
+    public function historicoEntradas($user)
+    {
+    	$this->db->select('e.fecha_ini, ev.nombre, e.descripcion, t.id');
+		$this->db->from('ticket t, entrada e, evento ev, usuario u');
+		$this->db->where('t.id_evento=ev.id');
+		$this->db->where('t.id_usuario=u.id');
+		$this->db->where('t.id_entrada=e.id');
+		$this->db->where('t.comprada=1');
+		$this->db->where('u.alias="' . $user . '"');
+		$this->db->order_by("e.fecha_ini DESC");
 		return $this->db->get()->result();
     }
 }

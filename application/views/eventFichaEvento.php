@@ -13,7 +13,7 @@
         			 <h3>" .  $query[0]->fecha_ini . " - " . $query[0]->fecha_fin . "</h3>
         			 <h4>" . $query[0]->descripcion . "</h4>
         			 <h4>Entradas desde " . $query2[0]->precio . "€</h4>
-        		 <button class='btn btn-info' href='" . site_url() ."/eventulex/compraEntrada/" . $query[0]->id . "/'>COMPRAR ENTRADAS</button> 
+        			 <a href='" . site_url() ."/eventulex/compraEntrada/" . $query[0]->id . "/' class='btn btn-info'>PROXIMAS ENTRADAS</a>
 			</div>
 			</div>";
    		}

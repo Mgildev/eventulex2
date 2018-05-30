@@ -183,4 +183,41 @@ class eventulex extends CI_Controller
       $this->load->view('eventFunciona');
       $this->load->view('eventPie');
     }
+
+    public function perfil()
+    {
+      $this->load->helper('url');
+      $this->load->library('session');
+      $this->load->view('eventCabecera');
+      $this->load->view('eventUserPrivado');
+      $this->load->view('eventPie');
+    }
+
+    public function proximasEntradas($user)
+    {
+      $this->load->helper(array('form', 'url'));
+      $this->load->library('table');
+      $this->load->library('session');
+      $this->load->model('eventulex_model','',TRUE);
+      $data['query'] = $this->eventulex_model->proximasEntradas($user);
+      
+      $this->load->view('eventCabecera');
+      $this->load->view('eventUserPrivado');
+      $this->load->view('eventProximasEntradas',$data);
+      $this->load->view('eventPie');
+    }
+
+    public function historico($user)
+    {
+      $this->load->helper(array('form', 'url'));
+      $this->load->library('table');
+      $this->load->library('session');
+      $this->load->model('eventulex_model','',TRUE);
+      $data['query'] = $this->eventulex_model->historicoEntradas($user);
+      
+      $this->load->view('eventCabecera');
+      $this->load->view('eventUserPrivado');
+      $this->load->view('eventHistoricoEntradas',$data);
+      $this->load->view('eventPie');
+    }
 }
