@@ -93,4 +93,15 @@ class eventulex_model extends CI_Model
         $this->db->insert('usuario', $this); 
         return TRUE;       
     }
+
+    public function precioBajoEntrada($evento)
+    {
+    	//SELECT e.precio FROM entrada e WHERE e.id_evento=1 order by e.precio asc limit 1
+    	$this->db->select('e.precio');
+		$this->db->from('entrada e');
+		$this->db->where('e.id_evento=' . $evento);
+		$this->db->order_by('e.precio ASC');
+		$this->db->limit(1);
+		return $this->db->get()->result();
+    }
 }

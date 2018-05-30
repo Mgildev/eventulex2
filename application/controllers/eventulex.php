@@ -154,11 +154,10 @@ class eventulex extends CI_Controller
       $this->load->library('session');
       $this->load->model('eventulex_model','',TRUE);
       $data['query'] = $this->eventulex_model->fichaEvento($evento);
-      $data2['query2'] = $this->eventulex_model->fichaEntradas($evento);
+      $data['query2'] = $this->eventulex_model->precioBajoEntrada($evento);
       
       $this->load->view('eventCabecera');
-      $this->load->view('eventPrincipal',$data);
-      $this->load->view('eventFichaEvento',$data2);
+      $this->load->view('eventFichaEvento',$data);
       $this->load->view('eventPie');
     }
 
