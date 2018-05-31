@@ -11,7 +11,8 @@
 				    	<td>" . $query[$i]->fecha_ini . "</td>
 				    	<td>" . $query[$i]->nombre . "</td>
 						<td>" . $query[$i]->descripcion . "</td>
-						<td><button class='btn btn-info' href='" . site_url() ."/eventulex/imprimirTicket/" . $query[$i]->id . "/'>IMPRIMIR</button></td>";
+						<td>
+						<a href='" . site_url() ."/eventulex/imprimirTicket/" . $query[$i]->id . "/' class='btn btn-info'>IMPRIMIR</a></div>";
 			}
 			echo "</table>";
 		}

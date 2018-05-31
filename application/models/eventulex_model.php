@@ -139,4 +139,17 @@ class eventulex_model extends CI_Model
 		$this->db->order_by("e.fecha_ini DESC");
 		return $this->db->get()->result();
     }
+
+    function imprimirTicket($ticket)
+    {
+    	$this->db->select('e.fecha_ini, ev.nombre as evento, e.descripcion, t.id, u.nombre, ev.logo, ev.lugar, e.precio');
+		$this->db->from('ticket t, entrada e, evento ev, usuario u');
+		$this->db->where('t.id_evento=ev.id');
+		$this->db->where('t.id_usuario=u.id');
+		$this->db->where('t.id_entrada=e.id');
+		$this->db->where('t.comprada=1');
+		$this->db->where('t.id="' . $ticket . '"');
+		$this->db->order_by("e.fecha_ini DESC");
+		return $this->db->get()->result();
+    }
 }

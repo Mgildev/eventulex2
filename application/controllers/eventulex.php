@@ -220,4 +220,25 @@ class eventulex extends CI_Controller
       $this->load->view('eventHistoricoEntradas',$data);
       $this->load->view('eventPie');
     }
+
+    public function imprimirTicket($ticket)
+    {
+      $this->load->helper(array('form', 'url'));
+      $this->load->library('table');
+      $this->load->library('session');
+      $this->load->model('eventulex_model','',TRUE);
+      $query = $this->eventulex_model->imprimirTicket($ticket);
+      $codigoQR=$query[0]->id . "&" . $query[0]->evento . "&" . $query[0]->fecha_ini . "&" . $query[0]->nombre;
+      $data['query']=$query;
+      $data['codigoQR'] =$codigoQR;
+      $this->load->view('eventCabecera');      
+      $this->load->view('eventImprimirTicket',$data);
+      $this->load->view('eventPie');
+    }
+
+    public function muestraTicket($ticket)
+    {
+      $this->load->helper(array('form', 'url'));
+      $this->load->view('eventImprimirTicket',$data);
+    }
 }
