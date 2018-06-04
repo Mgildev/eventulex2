@@ -25,6 +25,11 @@
 </div>  
 
 <div class="container delante margen">
-	<?php echo $map['js']; ?>
-	<?php echo $map['html']; ?>
+	<?php 
+	if( $query[0]->maps !="" && isset($query[0]->maps))
+	{
+		echo $map['js'];
+		echo $map['html']; 
+	}
+	?>
 </div>

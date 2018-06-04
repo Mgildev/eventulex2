@@ -58,9 +58,18 @@ class eventulex extends CI_Controller
               $this->session->set_userdata(array(
                 'alias' => $_POST['alias']
               ));
-              $this->load->view('eventCabecera');
-              $this->load->view('eventUserPrivado');
-              $this->load->view('eventPie');
+              if($_POST['alias']!="admin")
+              {
+                $this->load->view('eventCabecera');
+                $this->load->view('eventUserPrivado');
+                $this->load->view('eventPie');
+              }
+              else
+              {
+                $this->load->view('eventCabeceraAdmin');
+                $this->load->view('eventAdministracion');
+                $this->load->view('eventPie');
+              }
             }
               else
               {
@@ -156,16 +165,17 @@ class eventulex extends CI_Controller
       $query = $this->eventulex_model->fichaEvento($evento);
       $data['query2'] = $this->eventulex_model->precioBajoEntrada($evento);
 
-
-      $config['center'] = $query[0]->maps;
-      $config['zoom'] = '15';
-      $this->googlemaps->initialize($config);
-      
-      $marker = array();
-      $marker['position'] = $query[0]->maps; //'37.176261, -3.597746';
-      $this->googlemaps->add_marker($marker);
-      $data['map'] = $this->googlemaps->create_map();
-      
+      if( $query[0]->maps !="" && isset($query[0]->maps))
+      {
+        $config['center'] = $query[0]->maps;
+        $config['zoom'] = '15';
+        $this->googlemaps->initialize($config);
+        
+        $marker = array();
+        $marker['position'] = $query[0]->maps; //'37.176261, -3.597746';
+        $this->googlemaps->add_marker($marker);
+        $data['map'] = $this->googlemaps->create_map();
+      }
       $data['query']=$query;
 
       $this->load->view('eventCabecera');
@@ -265,5 +275,48 @@ class eventulex extends CI_Controller
       $data['query']=$query;
       $data['codigoQR'] =$codigoQR;     
       $this->load->view('eventImprimirTicketPDF',$data);
+    }
+
+    /*public function AdminLogin()
+    {
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->library('session');
+        $this->load->view('eventCabeceraAdmin');
+        $this->load->view('eventAccesoAdmin');
+        $this->load->view('eventPie');
+    }*/
+
+    public function AdminEventos()
+    {
+      $this->load->helper(array('form', 'url'));
+      $this->load->library(array('table','session'));
+      $this->load->model('eventulex_model','',TRUE);
+      $data['query'] = $this->eventulex_model->muestraEventos();
+      $this->load->view('eventCabeceraAdmin');
+      $this->load->view('eventAdminEvents',$data);
+      $this->load->view('eventPie');
+    }
+
+    public function AdminUsuarios()
+    {
+      $this->load->helper(array('form', 'url'));
+      $this->load->library('table');
+      $this->load->library('session');
+      $this->load->view('eventCabeceraAdmin');
+
+
+      $this->load->view('eventPie');
+    }
+
+    public function AdminEntradas()
+    {
+      $this->load->helper(array('form', 'url'));
+      $this->load->library('table');
+      $this->load->library('session');
+      $this->load->view('eventCabeceraAdmin');
+
+
+      $this->load->view('eventPie');
     }
 }
