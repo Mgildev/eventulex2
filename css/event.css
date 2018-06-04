@@ -12,21 +12,6 @@
 	background-color: rgba(255, 255, 255, 0.7);
 }
 
-#caja 
-{ 
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-}
-
-#caja img 
-{ 
-	width: 100%;
-	height: 100%;
-}
-
 .texto 
 { 
 	color: blue;
@@ -39,7 +24,7 @@ footer
 {
 	text-align: center;
 	background-color: rgba(255, 255, 255, 0.7);
-  	position: absolute;
+  	position: relative;
   	bottom: 0;
   	width: 100%;
   	height: 30px;
@@ -61,4 +46,11 @@ footer
 .margen
 {
 	top: 10px;
+}
+
+body 
+{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
 }

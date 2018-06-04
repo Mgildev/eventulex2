@@ -14,11 +14,12 @@
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 	<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/event.css"> 
-	<script type = 'text/javascript' src = "<?php echo base_url(); ?>js/main.js"></script> 
+<!--- 	<script type = 'text/javascript' src = "<?php echo base_url(); ?>js/main.js"></script> --->
 </head>
 
-<body>
-<div id="caja"><img src="<?php echo base_url();?>img/fondos/fondo<?php echo(rand(1,4)); ?>.jpg"/></div>
+<body background="<?php echo base_url();?>img/fondos/fondo<?php echo(rand(1,4)); ?>.jpg" >
+ 
+
 <div class="text-center texto">
 	<h1>EVENTULEX</h1>      
     <h3>Tus entradas sin esperas</h3>

@@ -150,12 +150,24 @@ class eventulex extends CI_Controller
     public function cargaEvento($evento)
     {
       $this->load->helper(array('form', 'url'));
-      $this->load->library('table');
+      $this->load->library(array('table','googlemaps'));
       $this->load->library('session');
       $this->load->model('eventulex_model','',TRUE);
-      $data['query'] = $this->eventulex_model->fichaEvento($evento);
+      $query = $this->eventulex_model->fichaEvento($evento);
       $data['query2'] = $this->eventulex_model->precioBajoEntrada($evento);
+
+
+      $config['center'] = $query[0]->maps;
+      $config['zoom'] = '15';
+      $this->googlemaps->initialize($config);
       
+      $marker = array();
+      $marker['position'] = $query[0]->maps; //'37.176261, -3.597746';
+      $this->googlemaps->add_marker($marker);
+      $data['map'] = $this->googlemaps->create_map();
+      
+      $data['query']=$query;
+
       $this->load->view('eventCabecera');
       $this->load->view('eventFichaEvento',$data);
       $this->load->view('eventPie');
@@ -240,5 +252,18 @@ class eventulex extends CI_Controller
     {
       $this->load->helper(array('form', 'url'));
       $this->load->view('eventImprimirTicket',$data);
+    }
+
+    public function imprimirTicketPDF($ticket)
+    {
+      $this->load->helper(array('form', 'url'));
+      $this->load->library('table');
+      $this->load->library('session');
+      $this->load->model('eventulex_model','',TRUE);
+      $query = $this->eventulex_model->imprimirTicket($ticket);
+      $codigoQR=$query[0]->id . "&" . $query[0]->evento . "&" . $query[0]->fecha_ini . "&" . $query[0]->nombre;
+      $data['query']=$query;
+      $data['codigoQR'] =$codigoQR;     
+      $this->load->view('eventImprimirTicketPDF',$data);
     }
 }

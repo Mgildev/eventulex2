@@ -15,8 +15,16 @@
         			 <h4>Entradas desde " . $query2[0]->precio . "€</h4>
         			 <a href='" . site_url() ."/eventulex/compraEntrada/" . $query[0]->id . "/' class='btn btn-info'>PROXIMAS ENTRADAS</a>
 			</div>
+			
 			</div>";
    		}
     	?>
+    	
 	</div>
+
 </div>  
+
+<div class="container delante margen">
+	<?php echo $map['js']; ?>
+	<?php echo $map['html']; ?>
+</div>

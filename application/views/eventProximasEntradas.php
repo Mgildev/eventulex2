@@ -12,7 +12,8 @@
 				    	<td>" . $query[$i]->nombre . "</td>
 						<td>" . $query[$i]->descripcion . "</td>
 						<td>
-						<a href='" . site_url() ."/eventulex/imprimirTicket/" . $query[$i]->id . "/' class='btn btn-info'>IMPRIMIR</a></div>";
+						<a href='" . site_url() ."/eventulex/imprimirTicket/" . $query[$i]->id . "/' class='btn btn-info'>PANTALLA</a></div>
+						<a href='" . site_url() ."/eventulex/imprimirTicketPDF/" . $query[$i]->id . "/' class='btn btn-info'>PDF</a></div>";
 			}
 			echo "</table>";
 		}
